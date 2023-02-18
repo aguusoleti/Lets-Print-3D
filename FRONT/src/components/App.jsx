@@ -4,7 +4,7 @@ import '../styles/global.scss';
 const App = () => {
     return (
         
-            <h2>Bienvenido a Lets Print!</h2>
+            <h1>Bienvenido a Lets Print!</h1>
     );
 };
 
