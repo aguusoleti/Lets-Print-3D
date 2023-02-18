@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Valeabril11/Lets-Print-3D/issues"
   },
-  "homepage": "https://github.com/Valeabril11/Lets-Print-3D#readme"
+  "homepage": "https://github.com/Valeabril11/Lets-Print-3D#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
 }
