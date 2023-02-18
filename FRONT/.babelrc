@@ -1,0 +1,8 @@
+// aqui agregamos la configuracion de los prests para que abbel los pueda interpretar
+
+{
+    "presets":[
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ]
+}
