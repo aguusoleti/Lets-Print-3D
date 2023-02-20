@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import clientRoutes from "./routes/clientRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 
 dotenv.config({ path: ".env" });
 
@@ -16,6 +17,8 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/client", clientRoutes);
+app.use("/api/product", productRoutes);
+
 
 
 
