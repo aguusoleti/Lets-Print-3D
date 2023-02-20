@@ -1,4 +1,4 @@
-import Cliente from "../models/Client.js";
+import Client from "../models/Client.js";
 import generarJWT from "../helpers/generarJWT.js";
 import generarId from "../helpers/generarId.js";
 import {
@@ -13,7 +13,7 @@ import emailNuevoPassword from "../helpers/emailPasswordOlvidadaClientes.js";
 
 const registrarCliente = async (req, res) => {
   const { email,celphone,name } = req.body;
-  const existeCliente = await Cliente.findOne({ email });
+  const existeCliente = await Client.findOne({ email });
 
   if (
     validarTelefonoAr.test(celphone) ||
@@ -29,7 +29,7 @@ const registrarCliente = async (req, res) => {
     }
 
     try {
-      const cliente = new Cliente(req.body);
+      const cliente = new Client(req.body);
       const clienteGuardado = await cliente.save();
       //enviar email
       emailRegistro({
@@ -53,7 +53,7 @@ const perfilCliente = (req, res) => {
 
 const confirmarCliente = async (req, res) => {
   const { token } = req.params;
-  const clienteConfirmar = await Cliente.findOne({ token });
+  const clienteConfirmar = await Client.findOne({ token });
 
   if (!clienteConfirmar) {
     const error = new Error("Token no valido");
@@ -74,7 +74,7 @@ const confirmarCliente = async (req, res) => {
 
 const autenticarCliente = async (req, res) => {
   const { email, password } = req.body;
-  const cliente = await Cliente.findOne({ email });
+  const cliente = await Client.findOne({ email });
   if (!cliente) {
     const error = new Error("El cliente no existe");
     return res.status(403).json({ msg: error.message });
@@ -95,7 +95,7 @@ const autenticarCliente = async (req, res) => {
 
 const passwordClienteOlvidada = async (req, res) => {
   const { email } = req.body;
-  const existeCliente = await Cliente.findOne({ email });
+  const existeCliente = await Client.findOne({ email });
   if (!existeCliente) {
     const error = new Error("El cliente no existe");
     return res.status(400).json({ msg: error.message });
@@ -119,7 +119,7 @@ const passwordClienteOlvidada = async (req, res) => {
 
 const comprobarTokenCliente = async (req, res) => {
   const { token } = req.params;
-  const tokenValido = await Cliente.findOne({ token });
+  const tokenValido = await Client.findOne({ token });
   if (tokenValido) {
     res.json({ msg: "Token valido, el cliente existe" });
   } else {
@@ -131,7 +131,7 @@ const comprobarTokenCliente = async (req, res) => {
 const nuevoPasswordCliente = async (req, res) => {
   const { token } = req.params;
   const { password } = req.body;
-  const cliente = await Cliente.findOne({ token });
+  const cliente = await Client.findOne({ token });
   if (!cliente) {
     const error = new Error("Hubo un error");
     res.status(400).json({ msg: error.message });

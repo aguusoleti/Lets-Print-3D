@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
   res.send("¡Hola, mundo!");
 })
 
-app.use("/api/clientes", clientRoutes);
+app.use("/api/client", clientRoutes);
 
 
 

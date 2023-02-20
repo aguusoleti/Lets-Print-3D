@@ -43,7 +43,7 @@ const clientSchema = mongoose.Schema({
   },
 });
 
-clienteSchema.pre("save", async function (next) {
+clientSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
   }
@@ -51,10 +51,10 @@ clienteSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-clienteSchema.methods.comprobarPasswordCliente = async function(formularioPassword){
+clientSchema.methods.comprobarPasswordCliente = async function(formularioPassword){
   return await bcrypt.compare(formularioPassword, this.password)
 }
 
 
 const Client = mongoose.model("Client",clientSchema)
-export default Cliente
+export default Client
