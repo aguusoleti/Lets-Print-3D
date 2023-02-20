@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import generarId from "../helpers/generarId.js";
 
 
-const clienteSchema = mongoose.Schema({
+const clientSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -56,5 +56,5 @@ clienteSchema.methods.comprobarPasswordCliente = async function(formularioPasswo
 }
 
 
-const Cliente = mongoose.model("Cliente",clienteSchema)
+const Client = mongoose.model("Client",clientSchema)
 export default Cliente
