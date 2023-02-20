@@ -8,7 +8,7 @@ const password = Joi.string().min(8);
 const direccion = Joi.string().min(3);
 
 
-const crearUsuario = Joi.object({
+const creteUsuario = Joi.object({
 
   name: nombre.required(),
   adress: direccion.required(),
@@ -18,4 +18,4 @@ const crearUsuario = Joi.object({
   celphone: telefono.required(),
 });
 
-export default crearUsuario;
+export default creteUsuario;
