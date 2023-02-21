@@ -9,13 +9,14 @@
   height: 100vh;
   display: grid;
   place-items: center;
+  
   /* con esto, estamos centrando el contenido de todo el div vertical y horizontalmente */
 }
 /*ahora vamos a crear las filas una arriba de la otra  para darle orden al contenido del form donde estan las contraseñas*/
 .form-container {
   display: grid;
   grid-template-rows: auto 1fr auto; /*de esta manera le decimos que en el medio tome una porcion 1fr y el resto sea automatico*/
-  width: 300px;
+  width: 300px
 }
 .logo {
   width: 100px;

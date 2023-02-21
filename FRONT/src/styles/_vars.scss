@@ -1,9 +1,15 @@
 :root {
-    --black:#000000;
-    --white: #FFFFFF;
-    --very-light-pink: #C7C7C7;
-    --text-input-field: #F7F7F7;
-    --dark: #232830;
-    --hospital-green: #ACD9B2;
-    
-}
+    --black: #000000;
+    --texto-menu: #000000;
+    --white: #ffffff;
+    --very-light-pink: #c77f7f;
+    --text-input-field: #ddd9d9;
+    --dark: #646363;
+    --hospital-yellow: #f1ff9f;
+    --hospital-lightorange: #dba100;
+    --color-buttom: red;
+    --sm: 14px;
+    --md: 16px;
+    --lg: 24px;
+    /*aqui estoy creando variables (sm = small) para luego utilizarlas y dar las medidas donde corresponda*/
+  }
