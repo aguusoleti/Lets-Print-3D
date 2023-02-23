@@ -10,7 +10,7 @@ import Home from "../pages/Home";
 import NotFound from "../pages/Notfound";
 import DesktopMenu from "../components/DesktopMenu";
 import EditMyAccount from "../components/EditMyAccount";
-import Inicio from "../containers/inicio";
+import Inicio from "../containers/product";
 
 const App = () => {
   return (

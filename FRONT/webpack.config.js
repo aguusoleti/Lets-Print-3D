@@ -16,6 +16,14 @@ module.exports = {
     mode: 'development',
     resolve: { //extensiones que voy a utilizar
         extensions: ['.js', '.jsx'],
+        alias: {
+            '@components': path.resolve(__dirname, 'src/components/'),
+            '@containers': path.resolve(__dirname, 'src/containers/'),
+            '@styles': path.resolve(__dirname, 'src/styles/'),
+            '@icons': path.resolve(__dirname, 'src/assets/icons//'),
+            '@logos': path.resolve(__dirname, 'src/assets/logos/'),
+            '@products': path.resolve(__dirname, 'src/assets/products/')
+        }
     },
     module: { // aqui voy a colocar  las reglas que vamos a crear con nuestros loaders y plugins
         rules: [
@@ -41,7 +49,15 @@ module.exports = {
                     "css-loader",
                     "sass-loader",
                 ],
-            }
+            },
+            {
+                test: /\.(png|jpe?g|gif|jpg|svg)$/i,
+                use: [
+                  {
+                    loader: 'file-loader',
+                  },
+                ],
+              },
         ]
     },
     plugins:[

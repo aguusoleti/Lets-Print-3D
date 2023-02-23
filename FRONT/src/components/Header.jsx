@@ -1,13 +1,17 @@
 //rsc
 import React from "react";
-import '../styles/Styles.scss'
+import '../styles/Styles.scss';
+
+import Logito from '@logos/logo.jpeg';
+import IconMenus from '@icons/icon_menu.svg'
+import shoppingCarts from '@icons/icon_shopping_cart.svg'
 
 const Header = () => {
   return (
     <nav>
-      <img src="./icons/icon_menu.svg" alt="menu" className="menu" />
+      <img src={IconMenus} alt="menu" className="menu" />
       <div className="navbar-left">
-        <img src="./logos/logo-central.jpeg" alt="logo" className="logo-2" />
+        <img src={Logito} alt="logo" className="nav-logo-2" />
         <ul>
           <li>
             {" "}
@@ -43,7 +47,7 @@ const Header = () => {
         <ul>
           <li className="navbar-email">letsprint@gmail.com</li>
           <li className="navbar-shopping-cart">
-            <img src="./icons/icon_shopping_cart.svg" alt="carrito" />
+            <img src={shoppingCarts} alt="carrito" />
             <div className="cantidad">6</div>
           </li>
         </ul>
