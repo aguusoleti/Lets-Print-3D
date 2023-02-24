@@ -4,6 +4,7 @@ import CardsProducts from '../components/CardsProducts';
 import useGetProducts from "../hooks/useGetProducts";
 import '../styles/Styles.scss'
 
+
 const API = 'https://api.escuelajs.co/api/v1/products';
 
 const Products = () => {
@@ -12,7 +13,7 @@ const products = useGetProducts(API)
    <section className="main-container">
     <div className="cards-container">
     {products.map(product => (
-          <CardsProducts product={product} kty={product.id}  />
+          <CardsProducts product={product} key={product.id}  />
         ))}
     </div>
    </section>
