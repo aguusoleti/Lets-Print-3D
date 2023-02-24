@@ -5,7 +5,8 @@ import CardsProducts from '../components/CardsProducts';
 import axios from 'axios';
 import '../styles/Styles.scss'
 
-const API = 'https://api.escuelajs.co/api/v1/products';
+// const API = 'https://api.escuelajs.co/api/v1/products';
+const API = 'http://localhost:5000/api/product/searchAll'
 
 const Products = () => {
 
@@ -13,7 +14,7 @@ const Products = () => {
 
   useEffect(async ()=>{
 const response = await axios (API);
-setProducts(response.data);
+setProducts(response);
   }, [])
 
   return (
