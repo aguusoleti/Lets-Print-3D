@@ -1,12 +1,19 @@
 //rsc
-import React from "react";
+import React, { useState } from "react";
 import '../styles/Styles.scss';
 
+import Menu from '@components/DesktopMenu'
 import Logito from '@logos/logo.jpeg';
 import IconMenus from '@icons/icon_menu.svg'
 import shoppingCarts from '@icons/icon_shopping_cart.svg'
 
 const Header = () => {
+  const [toggle, setTogle] = useState(false);
+
+  const handleToggle = () =>{
+    setTogle(!toggle);
+  }
+
   return (
     <nav>
       <img src={IconMenus} alt="menu" className="menu" />
@@ -45,13 +52,16 @@ const Header = () => {
       </div>
       <div className="navbar-rigth">
         <ul>
-          <li className="navbar-email">letsprint@gmail.com</li>
+          <li className="navbar-email" onClick={handleToggle}>
+            letsprint@gmail.com</li>
           <li className="navbar-shopping-cart">
             <img src={shoppingCarts} alt="carrito" />
             <div className="cantidad">6</div>
           </li>
         </ul>
       </div>
+      {toggle ? <Menu/> : ''}
+      {/* el codigo de arriba verifica que el toggle este en false para verificar que debemos abrir el menu */}
     </nav>
   );
 };

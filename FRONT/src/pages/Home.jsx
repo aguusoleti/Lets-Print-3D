@@ -1,7 +1,6 @@
 //rsc 
 import React from 'react';
 import Comprar from '../components/Comprar';
-import DesktopMenu from '../components/DesktopMenu';
 import Header from '../components/Header';
 import MisCarritos from '../components/MisCarritos';
 import Products from '../containers/product';
@@ -23,7 +22,6 @@ const Home = () => {
         <Products/>
         <ProductDetail/>
         <MiCarrito/>
-        <DesktopMenu/>
         <MisCarritos/>
         <Comprar/>
         <Mobile/>
