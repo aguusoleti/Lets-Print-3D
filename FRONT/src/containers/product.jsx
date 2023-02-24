@@ -1,34 +1,29 @@
 //rsc
 import React from "react";
-import '../styles/Styles.scss';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import CardsProducts from '../components/CardsProducts';
+import axios from 'axios';
+import '../styles/Styles.scss'
 
-const BASE_URL = '../../public/data/products.json';
+const API = 'https://api.escuelajs.co/api/v1/products';
 
 const Products = () => {
-  const [ProductData, setProductData] = useState([]);
 
-  useEffect(() => {
-    fetch(BASE_URL)
-      .then(response => response.json())
-      .then(json => console.log(json));
-  }, []);
+  const [products, setProducts] = useState([]);
 
+  useEffect(async ()=>{
+const response = await axios (API);
+setProducts(response.data);
+  }, [])
 
   return (
-    console.log(ProductData)
-    // <div id="product">
-         
-    //  { ProductData.map(product => (
-    //     <article className="fotos" key={product.id}>
-    //       <img src={product.imagen} alt={`${product.id}, ${product.nombre}`} className="imagen" />
-    //       <div className="textoCard">
-    //         <div className="nombre">{product.nombre}</div>
-    //         <div className="descripcion">{product.descripcion}.</div>
-    //       </div>
-    //     </article>
-    //   ))}
-    // </div>
+   <section className="main-container">
+    <div className="cards-container">
+    {products.map(e => (
+          <CardsProducts />
+        ))}
+    </div>
+   </section>
   );
 };
 
