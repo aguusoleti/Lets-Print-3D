@@ -1,5 +1,5 @@
 //rsc
-
+import { Helmet } from 'react-helmet'
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "../styles/global.scss";
@@ -11,9 +11,15 @@ import NotFound from "../pages/Notfound";
 import DesktopMenu from "../components/DesktopMenu";
 import EditMyAccount from "../components/EditMyAccount";
 import Inicio from "../containers/product";
+import logo from '@logos/logo.jpeg'
 
 const App = () => {
   return (
+    <>
+      <Helmet>
+        <link rel="shortcut icon" type="image/x-icon" href={logo} />
+      </Helmet>
+      
     <BrowserRouter>
       <Layout>
         <Routes>
@@ -27,6 +33,7 @@ const App = () => {
         </Routes>
       </Layout>
     </BrowserRouter>
+    </>
   );
 };
 
