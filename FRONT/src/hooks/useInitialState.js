@@ -15,11 +15,21 @@ const useInitialState = () => { //este es para que cuando tomemos la accion de a
             cart: [...state.cart, payload] // creame la cart con la informacion nueva y la que ya tenia, no la borres
         });
     } // ahora vamos al CardsProduct y al App.jsx para incorporarlo en AppContext.Provider
+    
+    
+    const removeFromCart= (payload) => {
+        setState({
+            ...state, //traigo el estado inicial
+            cart: state.cart.filter(items => items !== payload) // ahora filtro y busco el item y elimino este item
+        })
+    }
 
     return {
         state,
-        addToCart
+        addToCart,
+        removeFromCart, // este lo voy a usar en el order item con la imagen de close
     }
 }
+
 
 export default useInitialState

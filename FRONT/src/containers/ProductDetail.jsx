@@ -5,12 +5,13 @@ import bob from '@products/bob.jpeg'
 import iconShopping from '@icons/icon_shopping_cart.svg'
 
 const ProductDetail = () => {
+  
   return (
     <aside className="product-detail">
       <div className="product-detail-close">
         <img src={icon} alt="close" />
       </div>
-      <img src={bob} alt="bob" />
+      <img src={product.image[1]} alt="bob" />
       <div className="info-producto">
         <p>$2.000</p>
         <p>Tazon Bob Esponja</p>

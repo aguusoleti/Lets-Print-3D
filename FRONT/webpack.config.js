@@ -22,7 +22,8 @@ module.exports = {
             '@styles': path.resolve(__dirname, 'src/styles/'),
             '@icons': path.resolve(__dirname, 'src/assets/icons//'),
             '@logos': path.resolve(__dirname, 'src/assets/logos/'),
-            '@products': path.resolve(__dirname, 'src/assets/products/')
+            '@products': path.resolve(__dirname, 'src/assets/products/'),
+            '@baseImage': path.resolve(__dirname, '../src/')
         }
     },
     module: { // aqui voy a colocar  las reglas que vamos a crear con nuestros loaders y plugins
