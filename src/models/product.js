@@ -7,6 +7,7 @@ const productSchema = new mongoose.Schema({
   cantidad: { type: Number, required: true },
   proveedor: { type: String },
   subcategoria: { type: mongoose.Schema.Types.ObjectId, ref: 'Subcategoria' },
+  images:[{type: String}]
 });
 
 const Product = mongoose.model("Product",productSchema)
