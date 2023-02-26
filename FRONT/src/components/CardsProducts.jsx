@@ -5,22 +5,22 @@ import '../styles/Styles.scss';
 import product from '@products/bob.jpeg';
 import addToCart from '@icons/bt_add_to_cart.svg'
 
-const ProductsStock = () => {
+const ProductsStock = ({product}) => {
+  const [cart, setCart] = useState ([]); 
 
   const handleCart = () =>{
     setCart ('Hola mundo');
   }
 
-  const [cart, setCart] = useState ([]); 
 
   return (
 
   <div className="product-container">
-    <img src={product} alt='producto' />
+    <img src={product.images[0]} alt={product.title} />
     <div className="product-info">
       <div>
-        <p>$2000,00</p>
-        <p>Tazon Bob Esponja</p>
+        <p>{product.title}</p>
+        <p>${product.price}</p>
       </div>
       <figure onClick={handleCart} >
         <img src={addToCart} alt />
