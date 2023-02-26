@@ -12,18 +12,18 @@ const Products = () => {
   const products2 = useGetProducts(API2);
   return (
     <section className="main-container">
-      <div className="cards-container">
+     <div className="cards-container">
         {/* {products.map(product => (
-           <CardsProducts product={product} kty={product.id}  />
-          //  console.log(product)
-    ))} */}
+           <CardsProducts product={product} key={product.id}  />
+     
+     ))}  */}
 
         {/* --------------pruebas------------- */}
 
         {products2.map((product) => (
           <CardsProducts product={product} key={product.id} />
-          //  console.log(product)
-        ))}
+      
+      ))}
       </div>
     </section>
   );

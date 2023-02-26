@@ -11,15 +11,19 @@ import NotFound from "../pages/Notfound";
 import DesktopMenu from "../components/DesktopMenu";
 import EditMyAccount from "../components/EditMyAccount";
 import Inicio from "../containers/product";
+import AppContext from '../context/AppContext';
+import useInitialState from '../hooks/useInitialState';
 import logo from '@logos/logo.jpeg'
 
 const App = () => {
+
+  const initialState = useInitialState();
   return (
     <>
       <Helmet>
         <link rel="shortcut icon" type="image/x-icon" href={logo} />
       </Helmet>
-      
+      <AppContext.Provider value={initialState}>
     <BrowserRouter>
       <Layout>
         <Routes>
@@ -33,7 +37,9 @@ const App = () => {
         </Routes>
       </Layout>
     </BrowserRouter>
+    </AppContext.Provider>
     </>
+    
   );
 };
 
