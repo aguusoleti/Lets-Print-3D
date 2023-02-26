@@ -58,7 +58,8 @@ const Header = () => {
           </li>
           <li className="navbar-shopping-cart">
             <img src={shoppingCarts} alt="carrito" />
-            <div className="cantidad">6</div>
+            {state.cart.length > 0 ? <div className="cantidad">{state.cart.length}</div> : null }
+            {/* // aca valido que si la cart tiene elemmntos mmyores a cero, me los muestre, si no que muestre null */}
           </li>
         </ul>
       </div>
