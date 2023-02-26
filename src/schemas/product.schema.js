@@ -5,6 +5,7 @@ const price = Joi.number()
 const proveedor = Joi.string();
 const descripcion = Joi.string().min(8);
 const cantidad = Joi.number()
+const subcategoria= Joi.isRef()
 
 
 const createProduct = Joi.object({
@@ -13,7 +14,8 @@ const createProduct = Joi.object({
   precio: price.required(),
   proveedor: proveedor.required(),
   cantidad: cantidad.required(),
-  descripcion:descripcion.required()
+  descripcion:descripcion.required(),
+  subcategoria:subcategoria
 });
 
 export default createProduct;

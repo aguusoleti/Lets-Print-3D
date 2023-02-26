@@ -25,7 +25,7 @@ const Login = () => {
       <input type="email" name="email" placeholder="letsprint@gmail.com" className="input input-email" />
       <label htmlFor="password">Pasword</label>
       <input type="password" name="password" placeholder="*********" className="input input-password" />
-      <div><input type="submit" defaultValue="Confirm" className="primary-button login-button" /></div>
+      {/* <div><input type="submit" defaultValue="Confirm" className="primary-button login-button" /></div> */}
     </form>
     <button className="primary-button" onClick={handleSubmit}>Sign Up!</button>
   </div>

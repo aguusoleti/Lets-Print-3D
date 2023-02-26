@@ -5,6 +5,8 @@ import cors from "cors";
 
 import clientRoutes from "./routes/clientRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
+import subCategoryRoutes from "./routes/subCategoryRoutes.js";
 
 dotenv.config({ path: ".env" });
 
@@ -18,6 +20,8 @@ app.get("/", (req, res) => {
 
 app.use("/api/client", clientRoutes);
 app.use("/api/product", productRoutes);
+app.use("/api/category", categoryRoutes);
+app.use("/api/subCategory", subCategoryRoutes);
 
 
 
