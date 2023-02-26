@@ -1,52 +1,47 @@
+import React, { useContext } from "react";
+import "../styles/Styles.scss";
+import AppContext from "../context/AppContext";
+import addToCart from "@icons/bt_add_to_cart.svg";
+import bob from "@products/bob.jpeg";
 
-import React, {useState} from "react";
-import '../styles/Styles.scss';
+const ProductsStock = ({ product }) => {
+  const { addToCart } = useContext(AppContext);
 
-import bob from '@products/bob.jpeg';
-import addToCart from '@icons/bt_add_to_cart.svg'
-
-const ProductsStock = ({product}) => {
-  const [cart, setCart] = useState ([]); 
-
-  const handleCart = () =>{
-    setCart ('Hola mundo');
-  }
-
+  const handleCart = item => {
+    addToCart(item);
+  };
 
   return (
-
-  // <div className="product-container">
-  //   <img src={product.images[0]} alt={product.title} />
-  //   <div className="product-info">
-  //     <div>
-  //       <p>{product.name}</p>
-  //       <p>${product.price}</p>
-  //     </div>
-  //     <figure onClick={handleCart} >
-  //       <img src={addToCart} alt />
-  //     </figure>
-  //     {cart}
-  //   </div>
-    
-  // </div>)
-
-  // ----------------------pruebas
-
- <div className="product-container">
-    <img src={bob} alt={product.nombrre} />
-    <div className="product-info">
-      <div>
-        <p>{product.nombre}</p>
-        <p>${product.precio}</p>
+    <div className="product-container">
+      <img src={bob} alt={product.nombre} />
+      <div className="product-info">
+        <div>
+          <p>{product.nombre}</p>
+          <p>${product.precio}</p>
+        </div>
+        <figure onClick={() => handleCart(product)}>
+          <img src={addToCart.image} alt="carrito" />
+        </figure>
       </div>
-      <figure onClick={handleCart} >
-        <img src={addToCart} alt />
-      </figure>
-      {cart}
     </div>
-    
-  </div> 
-  )
+  );
 };
 
 export default ProductsStock;
+
+// ----------------------pruebas con la api de platzi
+
+// <div className="product-container">
+//   <img src={product.images} alt={product.title} />
+//   <div className="product-info">
+//     <div>
+//       <p>{product.title}</p>
+//       <p>${product.price}</p>
+//     </div>
+//     <figure onClick={handleCart} >
+//       <img src={addToCart} alt />
+//     </figure>
+//     {cart}
+//   </div>
+
+// </div>)
