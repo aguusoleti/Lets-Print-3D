@@ -1,9 +1,15 @@
+import Category from "../models/category.js";
 import Product from "../models/product.js";
+import subCategory from "../models/subCategory.js";
+
 const createProducts = async (req, res) => {
  
   try {
 
-    const product = new Product(req.body);
+    const subCategoriaTaza = await subCategory.findOne({ nombre: 'Tazones' });
+    const categoriaCeramica = await Category.findOne({ nombre: 'ceramica' });
+
+    const product = new Product(req.body,{subCategoriaTaza});
     const productSave = await product.save();
     res.json(productSave);
 
