@@ -1,5 +1,5 @@
 import express from "express";
-import { createSubCategory } from "../controllers/subCategoryController.js";
+import { createSubCategory } from "../controllers/subcategoryController.js";
 
 // import checkAuth from '../middleware/authMiddleware.js';
 

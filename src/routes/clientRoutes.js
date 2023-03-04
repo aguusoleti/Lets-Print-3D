@@ -1,5 +1,5 @@
 import express from "express";
-import { autenticarCliente, comprobarTokenCliente, confirmarCliente, nuevoPasswordCliente, passwordClienteOlvidada, perfilCliente, registrarCliente } from "../controllers/clientesController.js";
+import { autenticarCliente, comprobarTokenCliente, confirmarCliente, nuevoPasswordCliente, passwordClienteOlvidada, perfilCliente, registrarCliente } from "../controllers/clientController.js";
 
 // import checkAuth from '../middleware/authMiddleware.js';
 import validatorHandler from "../middleware/validator.handler.js";

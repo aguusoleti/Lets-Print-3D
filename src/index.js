@@ -6,7 +6,7 @@ import cors from "cors";
 import clientRoutes from "./routes/clientRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
-import subCategoryRoutes from "./routes/subCategoryRoutes.js";
+import subCategoryRoutes from "./routes/subcategoryRoutes.js";
 
 dotenv.config({ path: ".env" });
 

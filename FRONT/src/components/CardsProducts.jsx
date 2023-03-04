@@ -16,11 +16,11 @@ const ProductsStock = ({ product }) => {
 
   return (
     <div className="product-container">
-      <img src={foto} alt={product.images} />
+      <img src={foto} alt={product.image} />
       <div className="product-info">
         <div>
-          <p>{product.nombre}</p>
-          <p>${product.precio}</p>
+          <p>{product.name || product.nombre}</p>
+          <p>${product.price || product.precio}</p>
         </div>
         <figure onClick={() => handleCart(product)}>
           <img src={carrito} alt="" />
