@@ -1,6 +1,6 @@
 import React from "react";
 
-const Mobile = () => {
+const Menu = () => {
   return (
     <div className="mobile-menu">
       <ul>
@@ -85,4 +85,4 @@ const Mobile = () => {
   );
 };
 
-export default Mobile;
+export default Menu;

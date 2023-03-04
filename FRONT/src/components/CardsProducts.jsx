@@ -2,8 +2,6 @@ import React, { useContext } from "react";
 import "../styles/Styles.scss";
 import AppContext from "../context/AppContext";
 import carrito from "@icons/bt_add_to_cart.svg";
-import bob from "@products/bob.jpeg";
-import foto from "../../../src/uploads/1677431463429-923-9233975_lisa-simpson-loser-perdedor-lucianoballack-loser-lisa.png";
 
 const ProductsStock = ({ product }) => {
   const { addToCart } = useContext(AppContext);
@@ -24,9 +22,9 @@ const ProductsStock = ({ product }) => {
           <p>{product.name || product.nombre}</p>
           <p>${product.price || product.precio}</p>
         </div>
-        {/* <figure onClick={() => handleCart(product)}>
+        <figure onClick={() => handleCart(product)}>
           <img src={carrito} alt="" />
-        </figure> */}
+        </figure> 
       </div>
     </div>
   );
