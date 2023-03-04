@@ -4,8 +4,9 @@ const name = Joi.string().min(3);
 const price = Joi.number()
 const supplier = Joi.string();
 const description = Joi.string().min(8);
-const amount = Joi.number()
-const subcategory= Joi.isRef()
+const stock = Joi.number()
+const category= Joi.string()
+const subcategory= Joi.string()
 
 
 const createProduct = Joi.object({
@@ -13,9 +14,11 @@ const createProduct = Joi.object({
   name: name.required(),
   price: price.required(),
   supplier: supplier.required(),
-  amount: amount.required(),
+  stock: stock.required(),
   description:description.required(),
-  subcategory:subcategory
+  category:category.required(),
+  subcategory:subcategory.required()
+
 });
 
 export default createProduct;

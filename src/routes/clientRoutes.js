@@ -8,9 +8,9 @@ import creteUsuario from "../schemas/user.schema.js";
 
 const router = express.Router();
 
-router.post("/register", validatorHandler(creteUsuario, 'body') ,registrarCliente);
+router.post("/", validatorHandler(creteUsuario, 'body') ,registrarCliente);
 router.get("/perfil",perfilCliente)
-router.get("/confirmar/:token", confirmarCliente);
+router.get("/confirm/:token", confirmarCliente);
 router.post("/login",autenticarCliente);
 router.post("/password-olvidada",passwordClienteOlvidada)
 router.get("/password-olvidada/:token", comprobarTokenCliente);

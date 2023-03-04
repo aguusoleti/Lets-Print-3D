@@ -4,11 +4,18 @@ const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
   price: { type: Number, required: true },
   description: { type: String },
-  amount: { type: Number, required: true },
+  stock: { type: Number, required: true },
   supplier: { type: String },
-  subcategory: { type: mongoose.Schema.Types.ObjectId, ref: 'Subcategoria' },
-  image: [{type:String}]
+  subcategory: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category"
+  },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category"
+  },
+  imageUrls: [{ type: String }],
 });
 
-const Product = mongoose.model("Product",productSchema)
-export default Product
+const Product = mongoose.model("Product", productSchema);
+export default Product;

@@ -16,6 +16,7 @@ const storage = multer.diskStorage({
 
 const router = express.Router();
 
+
 router.post("/create", validatorHandler(createProduct, 'body') ,createProducts);
 router.get("/search", searchProducts);
 router.get("/searchAll", searchAllProducts);

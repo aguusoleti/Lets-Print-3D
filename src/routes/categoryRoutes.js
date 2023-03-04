@@ -6,7 +6,7 @@ import { createCategory } from "../controllers/categoryController.js";
 
 const router = express.Router();
 
-router.post("/new", createCategory);
+router.post("/", createCategory);
 
 // router.get('/perfil', checkAuth, perfilCliente);
 export default router;
