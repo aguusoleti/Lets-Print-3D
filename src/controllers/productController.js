@@ -1,8 +1,7 @@
 import Category from "../models/category.js";
 import Product from "../models/product.js";
-import multer from 'multer';
 import Subcategory from "../models/subcategory.js";
-
+import cloudinary from 'cloudinary'
 const createProducts = async (req, res) => {
   try {
     const subCategoriaTaza = await Subcategory.findOne({ nombre: 'Tazones' });
@@ -35,44 +34,34 @@ const searchAllProducts = async(req,res)=>{
     res.status(404).json({ msg: error.message });
   }
 };
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname);
-  },
-});
-const upload = multer({ storage: storage });
+
 const uploadImage = async (req, res) => {
-  try {
-    const productId = req.params.id;
-    const product = await Product.findById(productId);
-
-    if (!product) {
-      return res.status(404).json({ message: 'Producto no encontrado' });
-    }
-
-    upload.array('images')(req, res, async function (err) {
-      if (err) {
-        return res.status(400).json({ message: 'Error al subir las imágenes' });
-      }
-
-      const images = req.files.map(file => {
-        return  file.path
-        
+    const id = req.params.id;
+    const fotos = req.files;
+    try{
+      cloudinary.config({
+        cloud_name: process.env.CLOUD_NAME,
+        api_key: process.env.API_KEY,
+        api_secret: process.env.API_SECRET
       });
-console.log(images)
-      product.images = images;
     
-      await product.save();
+      const promesasDeSubida = fotos.map(async foto => {
+        const resultado = await cloudinary.uploader.upload(foto.path);
+        return resultado.secure_url
+      });
 
-      return res.status(200).json({ message: 'Imágenes subidas correctamente' });
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: 'Error interno del servidor' });
-  }
+      const fotosSubidas = await Promise.all(promesasDeSubida);
+      console.log(fotosSubidas + 'soy fotos subidas')
+    
+      const documento = await Product.findOne({_id: id});
+      documento.image = fotosSubidas;
+      await documento.save();
+    
+      res.send('Fotos agregadas');
+    }catch(err){
+      res.status(400).json({message: err.message});
+    }
+  
 }
 
 export {
