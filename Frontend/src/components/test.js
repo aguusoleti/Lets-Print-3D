@@ -1,6 +1,6 @@
 import { Text, Spacer } from "@nextui-org/react"
 import { Box } from "./Navbar/Box.js"
-import NavbarLayout from '../components/Navbar/App.js'
+import NavbarLayout from './Navbar/NavBar.js'
 export const Test = () => (
 
     
