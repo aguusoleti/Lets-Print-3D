@@ -7,8 +7,8 @@ import removeFromCart from '../hooks/useInitialState'
 const OrderItem = ({ product }) => {
 	const { removeFromCart } = React.useContext(AppContext)
 
-	const handleRemove = product => {
-		removeFromCart(product)
+	const handleRemove = item => {
+		removeFromCart(item)
 	}
     
 	return (

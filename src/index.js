@@ -3,9 +3,9 @@ import conectarDB from "./database/db.js";
 import dotenv from "dotenv";
 import cors from "cors";
 
-import clientRoutes from "./routes/clientRoutes.js";
-import productRoutes from "./routes/productRoutes.js";
-import categoryRoutes from "./routes/categoryRoutes.js";
+import clientRoutes from "./api/routes/clientRoutes.js";
+import productRoutes from "./api/routes/productRoutes.js";
+import categoryRoutes from "./api/routes/categoryRoutes.js";
 
 dotenv.config({ path: ".env" });
 

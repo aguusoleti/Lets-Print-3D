@@ -4,7 +4,7 @@ import AppContext from "../context/AppContext";
 import flechita from "@icons/flechita.svg";
 import product from "@products/2.jpeg";
 import close from "@icons/icon_close.png";
-import OrderItem from "../components/OrderItem.jsx";
+import OrderItem from "./OrderItem.jsx";
 
 const Comprar = () => {
   const { state } = useContext(AppContext);
@@ -44,4 +44,4 @@ const Comprar = () => {
   );
 };
 
-export default Comprar;
+export default Comprar

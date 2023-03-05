@@ -3,13 +3,13 @@ import { Helmet } from 'react-helmet'
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "../styles/global.scss";
-import Login from "../components/login.jsx";
+import Login from "../pages/login.jsx";
 import Layout from "../containers/layout.jsx";
-import ResetPasword from "../components/ResetPasword";
+import ResetPasword from "../pages/ResetPasword";
 import Home from "../pages/Home";
 import NotFound from "../pages/Notfound";
 import DesktopMenu from "../components/DesktopMenu";
-import EditMyAccount from "../components/EditMyAccount";
+import EditMyAccount from "../pages/EditMyAccount";
 import Inicio from "../containers/product";
 import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
