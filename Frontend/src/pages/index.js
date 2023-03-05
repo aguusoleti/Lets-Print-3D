@@ -7,7 +7,7 @@ function HomePage() {
     return (
     <div>
      <AppBar/>
-     <Banner/>
+
     </div>
       )
   }
