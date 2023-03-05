@@ -1,39 +1,36 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
   footerNav: {
-    position: "absolute",
-    bottom: "0",
-    width: "100%",
+    display: 'flex',
+    flexWrap: 'wrap',
   },
-  divisores:{
-   contain :"center"
-  }
 }));
 
 export default function Footer() {
   const classes = useStyles();
+
   return (
-    <footer>
-      <Container maxWidth="lg" className={classes.footerNav}>
+    <footer style={{ position: 'absolute', bottom: 0, width: '100%',backgroundColor: 'rgba(186, 178, 178, 0.353)',size:"20px" }}>
+      <Container maxWidth="lg">
         <Box py={6} display="flex" flexWrap="wrap" alignItems="center">
           <Link href="#" color="inherit" underline="none"></Link>
-          <Box component="nav" className={classes.divisores}>
-            <Link href="#" variant="body1" color="textPrimary">
+          <Box component="nav" className={classes.footerNav}>
+            <Link href="#" color="textPrimary">
               Hola
             </Link>
-            <Link href="#" variant="body1" color="textPrimary">
+            <Link href="#" color="textPrimary">
               Como
             </Link>
-            <Link href="#" variant="body1" color="textPrimary">
+            <Link href="#" color="textPrimary">
               Estas
             </Link>
-            <Link href="#" variant="body1" color="textPrimary">
+            <Link href="#" color="textPrimary">
               Tu
             </Link>
           </Box>
@@ -46,5 +43,5 @@ export default function Footer() {
         </Box>
       </Container>
     </footer>
-  );
-}
+ 
+  )}
