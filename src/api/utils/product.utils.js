@@ -11,11 +11,10 @@ export const buildFilterProductQuery = (queryParams) => {
   let filter = clearObject(queryParams);
   filter = parseProductFields(filter);
   let result = {};
-console.log(filter)
   for (const attr in filter) {
-    if (typeof attr === "string")
+    if (typeof filter[attr] === "string")
       result[attr] = { $regex: filter[attr], $options: "i" };
-    else if (typeof attr === "number") result[attr] = filter[attr];
+    else if (typeof filter[attr] === "number") result[attr] = filter[attr];
   }
   return result;
 };
