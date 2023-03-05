@@ -62,7 +62,7 @@ const Header = () => {
           onClick={()=>setToggleOrders(!toggleOrders)}>
 
             <img src={shoppingCarts} alt="carrito" />
-            {state.cart.length > 0 ? <div className="cantidad">{state.cart.length}</div> : null }
+            {state.cart.length > 0 ? <div className="cantidad"> {state.cart.length}</div> : null }
             {/* // aca valido que si la cart tiene elemmntos mmyores a cero, me los muestre, si no que muestre null */}
           </li>
         </ul>
