@@ -1,7 +1,7 @@
 import Category from "../models/category.js";
 import Product from "../models/product.js";
 import cloudinary from "cloudinary";
-import {findAllAndPopulate,buildFilterProductQuery} from '../utils/product.utils.js'
+import {findAllAndPopulate, buildFilterProductQuery} from '../utils/product.utils.js'
 const createProducts = async (req, res) => {
   try {
     const { category, subcategory } = req.body;
@@ -17,7 +17,7 @@ const createProducts = async (req, res) => {
 const searchProducts = async (req, res) => {
   const{name}=req.query
   try {
-    const data = await findAllAndPopulate(buildFilterProductQuery(req.query));
+    const data = await findAllAndPopulate(await buildFilterProductQuery(req.query));
     res.status(200).json(data);
   } catch (err) {
     console.log(err.message)
