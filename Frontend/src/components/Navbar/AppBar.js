@@ -51,11 +51,16 @@ function ResponsiveAppBar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img
+         <Button
+         href='/'
+         style={{ backgroundColor:'rgba(186, 178, 178, 0)', padding:'0px'}}
+         > 
+         <img
             src="/logo.png"
             alt="logo"
-            style={{ width: "85px", height: "auto" }}
+            style={{ width: "85px", height: "auto" }} 
           />
+          </Button>
           <Typography
             variant="h6"
             noWrap

@@ -1,6 +1,6 @@
 //rsc
 import React from "react";
-import CardsProducts from "../../components/Producto/CardsProducts.js";
+import CardsProducts from "../../components/Producto/CardsProducts";
 import useGetProducts from "../../hooks/useGetProducts.js";
 // import "../styles/Styles.scss";
 

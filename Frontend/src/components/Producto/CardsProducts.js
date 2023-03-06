@@ -1,65 +1,31 @@
-import * as React from 'react';
-import AspectRatio from '@mui/joy/AspectRatio';
-import Card from '@mui/joy/Card';
-import CardOverflow from '@mui/joy/CardOverflow';
-import Divider from '@mui/joy/Divider';
-import Typography from '@mui/joy/Typography';
-import IconButton from '@mui/joy/IconButton';
-import Link from '@mui/joy/Link';
-import Favorite from '@mui/icons-material/Favorite';
-// import AppContext from '../../context/AppContext.js'
+import React, { useContext } from "react";
+// import "../styles/Styles.scss";
+import AppContext from "../../context/AppContext.js";
+import {CgShoppingCart} from "react-icons/cg"
+import { margin } from "@mui/system";
 
- function CardsProducts({product}) {
+const CardsProducts = ({ product }) => {
+  const { addToCart } = useContext(AppContext);
+ 
+
+  const handleCart = (item) => {
+    addToCart(item);
+  };
+
+
   return (
-    <Card variant="outlined" sx={{ width: 320 }}>
-      <CardOverflow>
-        <AspectRatio ratio="2">
-          <img
-            src={product.imageUrls}
-            alt=""
-          />
-        </AspectRatio>
-        <IconButton
-          aria-label="Like minimal photography"
-          size="md"
-          variant="solid"
-          color="danger"
-          sx={{
-            position: 'absolute',
-            zIndex: 2,
-            borderRadius: '50%',
-            right: '1rem',
-            bottom: 0,
-            transform: 'translateY(50%)',
-          }}
-        >
-          <Favorite />
-        </IconButton>
-      </CardOverflow>
-      <Typography level="h2" sx={{ fontSize: 'md', mt: 2 }}>
-     {product.name}
-      </Typography>
-     
-      <Divider inset="context" />
-      <CardOverflow
-        variant="soft"
-        sx={{
-          display: 'flex',
-          gap: 1.5,
-          py: 1.5,
-          px: 'var(--Card-padding)',
-          bgcolor: 'background.level1',
-        }}
-      >
-        <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>
-          ${product.price}
-        </Typography>
-        <Divider orientation="vertical" />
-        
-      </CardOverflow>
-    </Card>
+    <div className="product-container" style={{backgroundColor:' rgba(186, 178, 178, 0.353)', marginTop:'20px', borderRadius:'40px 40px 10px 10px'}}>
+      <img src={product.imageUrls} alt={product.imageUrls} />
+      <div className="product-info">
+        <div style={{padding:'10px', fontFamily:'Roboto'}}>
+          <p>${product.price}</p>
+          <p>{product.name}</p>
+        </div>
+        <figure onClick={() => handleCart(product)} style={{width:'40px', borderRadius:'80%', height:'40px', borderRadius:'80%', marginRight:'10px'}}> <CgShoppingCart style={{width:'28px', height:'30px', marginRight:'px'}}/>
+        </figure> 
+      </div>
+    </div>
   );
-}
+};
 
-
-export default CardsProducts
+export default CardsProducts;
