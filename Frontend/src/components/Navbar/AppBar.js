@@ -16,7 +16,7 @@ import { color } from "@mui/system";
 
 const pages = [
   "Ceramica",
-  "Impresion 3D",
+  "Impresion3D",
   "Sublimacion",
   "Madera",
   "Insumos",
