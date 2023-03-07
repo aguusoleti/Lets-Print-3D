@@ -9,7 +9,7 @@ function Banner() {
     <Carousel>
     <Paper
       elevation={3}
-      sx={{ backgroundColor: 'rgba(150, 178, 178, 0.353)', color: 'white', padding: '20px', marginTop:'20px' }}
+      sx={{ backgroundColor: 'rgba(150, 178, 178, 0.353)', color: 'white', padding: '20px', marginTop:'100px' }}
     >
       <Typography variant="h5">Bienvenido al sitio web</Typography>
       <Typography variant="body1">

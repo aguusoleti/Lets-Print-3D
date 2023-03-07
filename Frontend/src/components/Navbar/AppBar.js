@@ -28,6 +28,7 @@ import {
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Login from "../Login/Login.js";
 const pages = [
   "Ceramica",
   "Impresion3D",
@@ -100,10 +101,7 @@ function ResponsiveAppBar() {
     event.preventDefault();
   };
   return (
-    <AppBar
-      position="static"
-      sx={{ backgroundColor: "rgba(186, 178, 178, 0.353)" }}
-    >
+    <AppBar position="fixed" sx={{ backgroundColor: "rgba(186, 178, 178, 1)" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Button
@@ -142,7 +140,6 @@ function ResponsiveAppBar() {
               textDecoration: "solid",
             }}
           ></Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -209,7 +206,11 @@ function ResponsiveAppBar() {
                   my: 2,
                   color: "black",
                   display: "block",
-                  ":hover": { backgroundColor: "red", borderRadius: "10px" },
+                  ":hover": {
+                    backgroundColor: "red",
+                    borderRadius: "10px",
+                    color: "white",
+                  },
                 }}
               >
                 {page}
@@ -252,14 +253,29 @@ function ResponsiveAppBar() {
                 </Typography>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                   ¿No tienes cuenta?
-                  <Link
-                    href="/"
-                    padding="10px"
-                    color="error"
-                    underline="none"
+                  <Button
+                    disableElevation
+                    disableTouchRipple
+                    sx={{
+                      color: "black",
+                      padding: "0px",
+                      "&:hover": {
+                        backgroundColor: "transparent",
+                      },
+                    }}
                   >
-                    Registrate
-                  </Link>
+                    <Link
+                      padding="10px"
+                      color="error"
+                      underline="none"
+                      onClick={() => {
+                        handleCloseModal1();
+                        handleOpenModal2();
+                      }}
+                    >
+                      Registrate
+                    </Link>
+                  </Button>
                 </Typography>
 
                 <TextField
@@ -267,6 +283,7 @@ function ResponsiveAppBar() {
                   id="demo-helper-text-aligned-no-helper"
                   sx={{ m: 0, width: "28ch", marginTop: "12px" }}
                   label="Email"
+                  color="error"
                 />
 
                 <FormControl
@@ -274,6 +291,7 @@ function ResponsiveAppBar() {
                   component="form"
                   noValidate
                   autoComplete="off"
+                  color="error"
                 >
                   <InputLabel htmlFor="outlined-adornment-password">
                     Contraseña
@@ -298,13 +316,18 @@ function ResponsiveAppBar() {
                   />
                   <Box sx={{ marginTop: "16px" }}>
                     <Stack spacing={7} direction="row">
-                      <Button href="/"variant="outlined" color="error">Volver</Button>
-                      <Button variant="contained" color="error" >Iniciar</Button>
+                      <Button href="/" variant="outlined" color="error">
+                        Volver
+                      </Button>
+                      <Button variant="contained" color="error">
+                        Iniciar
+                      </Button>
                     </Stack>
                   </Box>
                 </FormControl>
               </Box>
             </Modal>
+
             <Button
               key={"soyNuevo"}
               onClick={() => {
@@ -322,13 +345,62 @@ function ResponsiveAppBar() {
               aria-describedby="modal-modal-description"
             >
               <Box sx={style}>
+                <img
+                  src="/logo.png"
+                  alt="logo"
+                  style={{ width: "85px", height: "auto" }}
+                />
                 <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Text in a modal
+                  Bienvenido a Lets Print
                 </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  Duis mollis, est non commodo luctus, nisi erat porttitor
-                  ligula.
-                </Typography>
+
+                <TextField
+                  helperText=" "
+                  id="demo-helper-text-aligned-no-helper"
+                  sx={{ m: 0, width: "28ch", marginTop: "12px" }}
+                  label="Email"
+                  color="error"
+                />
+
+                <FormControl
+                  variant="outlined"
+                  component="form"
+                  noValidate
+                  autoComplete="off"
+                  color="error"
+                >
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Contraseña
+                  </InputLabel>
+                  <OutlinedInput
+                    sx={{ m: 0, width: "25ch" }}
+                    id="outlined-adornment-password"
+                    type={showPassword ? "text" : "password"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Password"
+                  />
+                  <Box sx={{ marginTop: "16px" }}>
+                    <Stack spacing={1} direction="row">
+                      <Button href="/" variant="outlined" color="error">
+                        Volver
+                      </Button>
+                      <Button variant="contained" color="error">
+                        Registrarse
+                      </Button>
+                    </Stack>
+                  </Box>
+                </FormControl>
               </Box>
             </Modal>
           </Box>

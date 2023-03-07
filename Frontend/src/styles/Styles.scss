@@ -144,13 +144,14 @@
 .product-container img {
   width: 240px; /*debe tener la misma edida que su padre*/
   height: 240px;
-  border-radius: 40px;
+  border-radius: 40px 40px 0px 0px;
 }
 
 .product-info {
   display: flex;
   justify-content: space-between; /*quiero uno al lado del otro*/
   align-items: center;
+  font-size: xx-large;
 }
 .product-info figure img {
   width: 35px;
@@ -586,3 +587,6 @@ margin-top: 14px;
 	font-size: var(--md);
 	font-weight: bold;
 }
+
+
+
