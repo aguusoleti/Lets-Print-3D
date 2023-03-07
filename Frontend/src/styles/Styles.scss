@@ -586,3 +586,26 @@ margin-top: 14px;
 	font-size: var(--md);
 	font-weight: bold;
 }
+
+/*------------BANNER---------------*/
+
+
+.product-banner {
+  display: flex;
+  width: 100%;
+  height: 50vh;
+  animation: infinite;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-delay: 1s;
+}
+
+.product-banner  img {
+  flex: 0 0 50%;
+  width: 50%;
+  object-fit: cover;
+
+  // transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+  // transition-duration: 5s;
+  // transition-delay: 2s;
+  
+}

@@ -1,24 +1,26 @@
-import * as React from 'react';
-// import { Carousel, CarouselItem } from '@mui/lab';
-import { Paper, Typography } from '@mui/material';
-import Carousel from 'react-material-ui-carousel'
+import * as React from "react";
+import useGetProducts from "../../hooks/useGetProducts.js";
 
+function Banner(){
 
-function Banner() {
-  return (
-    <Carousel>
-    <Paper
-      elevation={3}
-      sx={{ backgroundColor: 'rgba(150, 178, 178, 0.353)', color: 'white', padding: '20px', marginTop:'20px' }}
-    >
-      <Typography variant="h5">Bienvenido al sitio web</Typography>
-      <Typography variant="body1">
-        Aquí encontrarás todo lo que necesitas saber sobre nuestro producto.
-      </Typography>
-    </Paper>
+  const API2 = "http://localhost:5000/api/product/search?category=ceramica";
 
-    </Carousel>
-  );
+  const products2 = useGetProducts(API2);
+  return(
+<section >
+  <div className="product-banner">
+    {products2.map((e)=>
+    <img src={e.imageUrls}
+    sx={
+      {
+    
+      }
+    }
+    ></img>
+    )}
+  </div>
+</section>
+  )
 }
 
 export default Banner;
