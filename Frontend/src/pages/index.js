@@ -4,6 +4,7 @@ import AppBar from "../components/Navbar/AppBar.js";
 import Banner from '../components/Banner/Banner.js';
 import Home from '../containers/Home/Home.js';
 
+
 function HomePage() {
     return (
     <div>
@@ -12,7 +13,6 @@ function HomePage() {
 
 
      <AppBar/> 
-
      <Banner/>
      <Home/>
      <Footer/>
