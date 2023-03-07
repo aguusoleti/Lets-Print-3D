@@ -13,7 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { color } from "@mui/system";
-
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 const pages = [
   "Ceramica",
   "Impresion3D",
@@ -24,7 +25,7 @@ const pages = [
   "Mas",
 ];
 const settings = ["Perfil", "Carrito", "Salir"];
-
+ 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -43,6 +44,16 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  
+  
+    const [open, setOpen] = React.useState(false);
+    const handleClose = () => {
+      setOpen(false);
+    };
+    const handleToggle = () => {
+      setOpen(!open);
+    };
+  
 
   return (
     <AppBar
@@ -54,6 +65,7 @@ function ResponsiveAppBar() {
          <Button
          href='/'
          style={{ backgroundColor:'rgba(186, 178, 178, 0)', padding:'0px'}}
+         onClick={handleToggle}
          > 
          <img
             src="/logo.png"
@@ -61,6 +73,13 @@ function ResponsiveAppBar() {
             style={{ width: "85px", height: "auto" }} 
           />
           </Button>
+          <Backdrop
+  sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+  open={open}
+  onClick={handleClose}
+>
+  <CircularProgress color="inherit" />
+</Backdrop>
           <Typography
             variant="h6"
             noWrap
@@ -135,15 +154,45 @@ function ResponsiveAppBar() {
               <Button
                 href={`/${page}`}
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "Black", display: "block" }}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  handleToggle();
+                }}
+                sx={{ my: 2, color: "black", display: "block", ":hover":{backgroundColor:"red", borderRadius:"10px"} }}
               >
                 {page}
               </Button>
+              
             ))}
+              <Backdrop
+  sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+  open={open}
+  onClick={handleClose}
+>
+  <CircularProgress color="inherit" />
+</Backdrop>
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" }}}>
+            
+              <Button
+                href={"/#"}
+                key={"registrar"}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "Black", display: "block"  }}
+              >
+                Iniciar Sesion
+              </Button>
+              <Button
+                href={"/#"}
+                key={"iniciar sesion"}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "Black", display: "block" }}
+              >
+                Soy nuevo
+              </Button>
+          </Box>
+          
+          {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -171,7 +220,7 @@ function ResponsiveAppBar() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
         </Toolbar>
       </Container>
     </AppBar>
