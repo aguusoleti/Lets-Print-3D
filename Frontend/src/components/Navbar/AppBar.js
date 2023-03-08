@@ -15,29 +15,11 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { color } from "@mui/system";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import {
-  FormControl,
-  Input,
-  InputAdornment,
-  InputLabel,
-  Link,
-  Modal,
-  OutlinedInput,
-  Stack,
-  TextField,
-} from "@mui/material";
+import {  FormControl,  Input,  InputAdornment,  InputLabel,  Link,  Modal,  OutlinedInput,  Stack,  TextField,} from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import Login from "../Login/Login.js";
-const pages = [
-  "Ceramica",
-  "Impresion3D",
-  "Sublimacion",
-  "Madera",
-  "Insumos",
-  "Novedades",
-  "Mas",
-];
+
+const pages = ["Ceramica","Impresion3D","Sublimacion","Madera","Insumos","Novedades","Mas"];
 const settings = ["Perfil", "Carrito", "Salir"];
 const style = {
   position: "absolute",
