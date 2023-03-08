@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import generarId from "../helpers/generarId.js";
 
 
-const clientSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -41,9 +41,14 @@ const clientSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  type: {
+    type: String,
+    required: true,
+    enum:["client","business","admin"]
+  },
 });
 
-clientSchema.pre("save", async function (next) {
+userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
   }
@@ -51,10 +56,10 @@ clientSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-clientSchema.methods.comprobarPasswordCliente = async function(formularioPassword){
+userSchema.methods.comprobarPasswordUsuario = async function(formularioPassword){
   return await bcrypt.compare(formularioPassword, this.password)
 }
 
 
-const Client = mongoose.model("Client",clientSchema)
-export default Client
+const User = mongoose.model("User",userSchema)
+export default User
