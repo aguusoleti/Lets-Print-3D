@@ -8,6 +8,7 @@ import conectarDB from "./database/db.js";
 import clientRoutes from "./api/routes/clientRoutes.js";
 import productRoutes from "./api/routes/productRoutes.js";
 import categoryRoutes from "./api/routes/categoryRoutes.js";
+
 const PORT = process.env.PORT || 5000;
 
 (async () => {
@@ -17,7 +18,9 @@ const PORT = process.env.PORT || 5000;
   app.use(express.json());
   app.get("/", (req, res) => {
     res.send("¡Hola, mundo!");
-  })
+  });
+
+  app.use("/api/login", clientRoutes);
   app.use("/api/client", clientRoutes);
   app.use("/api/product", productRoutes);
   app.use("/api/category", categoryRoutes);
