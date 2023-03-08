@@ -29,7 +29,7 @@ const registrarUsuario = async (req, res) => {
     }
 
     try {
-      const usuario = new Client(req.body);
+      const usuario = new User(req.body);
       const usuarioGuardado = await usuario.save();
       //enviar email
       emailRegistro({
@@ -149,31 +149,12 @@ const nuevoPasswordUsuario = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  if (user.type === "admin") {
-      if (await user.comprobarPassword(password)) {
+  console.log(user)
+  if (user) {
+      if (await user.comprobarPasswordUsuario(password)) {
           return res.json({
               token: generarJWT(user.id),
-              data: admin,
-          });
-      } else {
-          const error = new Error("El password es incorrecto");
-          return res.json({ msg: error.message });
-      }
-  }else if (user.type === "business") {
-      if (await negocio.comprobarPasswordNegocio(password)) {
-          return res.json({
-              token: generarJWT(user.id),
-              data: negocio,
-          });
-      } else {
-          const error = new Error("El password es incorrecto");
-          return res.json({ msg: error.message });
-      }
-  }else if (user.type === "client") {
-      if (await user.comprobarPasswordCliente(password)) {
-          return res.json({
-              token: generarJWT(user.id),
-              data: cliente,
+              data: user,
           });
       } else {
           const error = new Error("El password es incorrecto");

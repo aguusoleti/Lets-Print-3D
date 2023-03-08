@@ -3,12 +3,12 @@ import { login, autenticarUsuario, comprobarTokenUsuario, confirmarUsuario, nuev
 
 // import checkAuth from '../middleware/authMiddleware.js';
 import validatorHandler from "../middleware/validator.handler.js";
+import loguear from "../schemas/login.schema.js";
 import creteUsuario from "../schemas/user.schema.js";
-
 
 const router = express.Router();
 
-router.post("/", login);
+router.post("/", validatorHandler(loguear, 'body'),login);
 router.post("/register", validatorHandler(creteUsuario, 'body') ,registrarUsuario);
 router.get("/perfil",perfilUsuario)
 router.get("/confirm/:token", confirmarUsuario);
