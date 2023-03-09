@@ -54,7 +54,7 @@ const perfilUsuario = (req, res) => {
 const confirmarUsuario = async (req, res) => {
   const { token } = req.params;
   const usuarioConfirmar = await User.findOne({ token });
-
+console.log(token)
   if (!usuarioConfirmar) {
     const error = new Error("Token no valido");
     return res.status(404).json({ msg: error.message });
@@ -64,8 +64,9 @@ const confirmarUsuario = async (req, res) => {
 
   try {
     usuarioConfirmar.token = null;
-    usuarioConfirmar.confirmado = true;
+    usuarioConfirmar.confirmation = true;
     await usuarioConfirmar.save();
+    console.log(usuarioConfirmar)
     res.json({ msg: "Usuario confirmado correctamente" });
   } catch (error) {
     console.log(error);
@@ -148,29 +149,41 @@ const nuevoPasswordUsuario = async (req, res) => {
 };
 const login = async (req, res) => {
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  console.log(user)
-  if (user) {
-      if (await user.comprobarPasswordUsuario(password)) {
+  const usuario = await User.findOne({ email });
+  console.log(usuario + "  Soy user")
+  if (usuario) {
+      if (await usuario.comprobarPasswordUsuario(password)) {
           return res.json({
-              token: generarJWT(user.id),
-              data: user,
+              token: generarJWT(usuario.id),
+              data: usuario,
           });
       } else {
           const error = new Error("El password es incorrecto");
           return res.json({ msg: error.message });
       }
   }
-  if (!user) {
+  if (!usuario) {
       const error = new Error("El Usuario no existe");
       return res.json({ msg: error.message });
   }
-  if (!user.confirmado) {
-      const error = new Error("La cuenta del cliente no ha sido validada");
+  console.log(usuario + "  Soy user")
+  if (!usuario.confirmation) {
+  console.log(usuario + "  Soy user")
+  const error = new Error("La cuenta del cliente no ha sido validada");
       return res.json({ msg: error.message });
   }
 
 };
+
+// const searchUser = async (req, res) => {
+//   const { id } = req.params;
+//   const user = await User.findOne({ id });
+
+//   if (user) {
+//     const error = new Error("Token no valido");
+//     return res.status(404).json({ msg: error.message });
+//   }
+// }
 export {
   registrarUsuario,
   confirmarUsuario,

@@ -30,6 +30,7 @@ import {
 } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import useGetProducts from "../../hooks/useGetProducts.js";
 
 const pages = [
   "Ceramica",
@@ -58,7 +59,13 @@ const style = {
   paddingRight: "0px",
   // backgroundColor:"#rgba(186, 178, 178)"
 };
+
+
+
 function ResponsiveAppBarLogin() {
+  // const localStorage = new LocalStorage('./scratch');
+  const data = JSON.parse(localStorage.getItem("info"));
+ 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -84,27 +91,8 @@ function ResponsiveAppBarLogin() {
   const handleToggle = () => {
     setOpen(!open);
   };
-  const [showComponent, setShowComponent] = React.useState(false);
-
-  const [openModal1, setOpenModal1] = React.useState(false);
-  const handleOpenModal1 = () => setOpenModal1(true);
-  const handleCloseModal1 = () => setOpenModal1(false);
-
-  const [openModal2, setOpenModal2] = React.useState(false);
-  const handleOpenModal2 = () => setOpenModal2(true);
-  const handleCloseModal2 = () => setOpenModal2(false);
-
-  const [showPassword, setShowPassword] = React.useState(false);
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-    useEffect(() => {
-      setUserLogged(user?.data?.name);
-    }, [user]);
-  };
-
+  
+  const userInfo = JSON.parse(localStorage.getItem("info"));
   
     return (
       <AppBar
@@ -238,10 +226,12 @@ function ResponsiveAppBarLogin() {
             </Box>
            
 
-            <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } ,margin: '10px', padding: '10px'}}>
+            <Typography>Hola {userInfo.name} Bienvenido</Typography>
+
+            <Tooltip title="">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+               <MenuIcon/>
               </IconButton>
             </Tooltip>
             <Menu
@@ -261,7 +251,7 @@ function ResponsiveAppBarLogin() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={handleCloseUserMenu} >
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
