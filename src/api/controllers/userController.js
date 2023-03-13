@@ -12,15 +12,15 @@ import emailRegistro from "../helpers/emailRegistroClientes.js";
 import emailNuevoPassword from "../helpers/emailPasswordOlvidadaClientes.js";
 
 const registrarUsuario = async (req, res) => {
-  const { email,celphone,name } = req.body;
+  const { email,name} = req.body;
   const existeUsuario = await User.findOne({ email });
 
-  if (
-    validarTelefonoAr.test(celphone) ||
-    validarTelefonoPe.test(celphone) ||
-    validarTelefonoCl.test(celphone) ||
-    validarTelefonoCo.test(celphone) ||
-    validarTelefonoVe.test(celphone)
+  if ( true
+    // validarTelefonoAr.test(celphone) ||
+    // validarTelefonoPe.test(celphone) ||
+    // validarTelefonoCl.test(celphone) ||
+    // validarTelefonoCo.test(celphone) ||
+    // validarTelefonoVe.test(celphone)
   ) {
    
     if (existeUsuario) {
@@ -31,6 +31,7 @@ const registrarUsuario = async (req, res) => {
     try {
       const usuario = new User(req.body);
       const usuarioGuardado = await usuario.save();
+      console.log(usuarioGuardado)
       //enviar email
       emailRegistro({
         email,
@@ -40,15 +41,43 @@ const registrarUsuario = async (req, res) => {
     } catch (error) {
       console.log(error);
     }
-  } else {
-    const error = new Error("Formato de telefono no valido");
-    return res.status(400).json({ msg: error.message });
   }
+  //  else {
+  //   const error = new Error("Formato de telefono no valido");
+  //   return res.status(400).json({ msg: error.message });
+  // }
 };
 
-const perfilUsuario = (req, res) => {
-  const { usuario } = req;
-  res.json({ perfil: usuario });
+const perfilUsuario = async (req, res) => {
+  const email = req.query.email
+  const usuarioConfirmar = await User.findOne({ email });
+  console.log(email)
+  console.log(usuarioConfirmar)
+  try {
+    if(usuarioConfirmar){
+      res.json(usuarioConfirmar)
+    }
+  } catch (error) {
+    res.json(error)
+  }
+  
+};
+const validate = async (req, res) => {
+  const { email } = req.body;
+  const existeUsuario = await User.findOne({ email });
+  if (!existeUsuario) {
+    const error = new Error("El usuario no existe");
+    return res.status(400).json({ msg: error.message });
+  }
+  try {
+    res.json({
+      validated: existeUsuario.confirmation,
+      token: existeUsuario.token
+    });
+  } catch (err) {
+    const error = new Error("Error al enviar las instrucciones");
+    res.status(400).json({ msg: error.message });
+  }
 };
 
 const confirmarUsuario = async (req, res) => {
@@ -193,4 +222,5 @@ export {
   nuevoPasswordUsuario,
   perfilUsuario,
   login,
+  validate,
 };

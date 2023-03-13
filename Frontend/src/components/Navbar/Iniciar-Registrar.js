@@ -16,6 +16,7 @@ import {
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import handleLogin from "../Login/LoginLogica.js";
+import handleRegister from "../User/newUserLogic.js";
 
 const style = {
   position: "absolute",
@@ -36,9 +37,6 @@ const style = {
 };
 function IniciarRegistrar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
 
   const [openModal1, setOpenModal1] = React.useState(false);
   const handleOpenModal1 = () => setOpenModal1(true);
@@ -50,8 +48,12 @@ function IniciarRegistrar() {
 
   const [showComponent, setShowComponent] = React.useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -149,7 +151,11 @@ function IniciarRegistrar() {
             />
             <Box sx={{ marginTop: "16px" }}>
               <Stack spacing={7} direction="row">
-                <Button href="/" variant="outlined" color="error">
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={handleCloseModal1}
+                >
                   Volver
                 </Button>
                 <Button variant="contained" color="error" onClick={handleLogin}>
@@ -186,28 +192,34 @@ function IniciarRegistrar() {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Bienvenido a Lets Print
           </Typography>
-
           <TextField
             helperText=" "
-            id="demo-helper-text-aligned-no-helper"
+            id="name"
             sx={{ m: 0, width: "28ch", marginTop: "12px" }}
+            label="Nombre"
+            color="error"
+          />
+          <TextField
+            helperText=" "
+            id="email"
+            sx={{ m: 0, width: "28ch" }}
             label="Email"
             color="error"
           />
-
           <FormControl
             variant="outlined"
             component="form"
             noValidate
             autoComplete="off"
             color="error"
+            id="password"
           >
-            <InputLabel htmlFor="outlined-adornment-password">
+            <InputLabel htmlFor="password" id="password">
               Contraseña
             </InputLabel>
             <OutlinedInput
               sx={{ m: 0, width: "25ch" }}
-              id="outlined-adornment-password"
+              id="password-field"
               type={showPassword ? "text" : "password"}
               endAdornment={
                 <InputAdornment position="end">
@@ -221,14 +233,23 @@ function IniciarRegistrar() {
                   </IconButton>
                 </InputAdornment>
               }
-              label="Password"
+              label="password"
             />
+
             <Box sx={{ marginTop: "16px" }}>
               <Stack spacing={1} direction="row">
-                <Button href="/" variant="outlined" color="error">
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={handleCloseModal2}
+                >
                   Volver
                 </Button>
-                <Button variant="contained" color="error">
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={handleRegister}
+                >
                   Registrarse
                 </Button>
               </Stack>

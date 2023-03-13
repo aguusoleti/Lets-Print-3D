@@ -12,8 +12,8 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import IniciarRegistrar from "./Iniciar-Registrar";
 import Login from "../../hooks/navbarLogin";
+import Salir from "../Login/Salir";
 
 const pages = [
   "Ceramica",
@@ -24,13 +24,14 @@ const pages = [
   "Novedades",
   "Mas",
 ];
-const settings = ["Perfil", "Carrito", "Salir"];
+const settings = ["Perfil", "Carrito", <Salir/>];
 
 const token =
   typeof window !== "undefined" ? window.localStorage.getItem("token") : null;
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -40,7 +41,6 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
-  const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
   };
@@ -63,7 +63,8 @@ function ResponsiveAppBar() {
             <img
               src="/logo.png"
               alt="logo"
-              style={{ width: "85px", height: "auto" }}
+              style={{ width: "85px",display: "none", height: "auto"}}
+              
             />
           </Button>
           <Backdrop
@@ -124,7 +125,11 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <img
+              src="/logo.png"
+              alt="logo"
+              style={{ width: "85px", height: "auto" ,display: { xs: "flex", md: "none" }, mr: 1}}
+            />
           <Typography
             variant="h5"
             noWrap
@@ -175,7 +180,7 @@ function ResponsiveAppBar() {
               <CircularProgress color="inherit" />
             </Backdrop>
           </Box>
-          <Login/>
+          <Login />
         </Toolbar>
       </Container>
     </AppBar>
