@@ -30,7 +30,7 @@ const findAllProducts = async (req, res) => {
     // console.log(data);
     res.status(200).json(data);
   } catch (err) {
-    const error = new Error("Error al buscar un servicio");
+    const error = new Error("Error al buscar un producto");
     res.status(404).json({ msg: error.message });
   }
 };
