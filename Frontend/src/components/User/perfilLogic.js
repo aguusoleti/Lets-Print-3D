@@ -1,5 +1,4 @@
 
-
 const handlePerfil = async () => {
   const info = JSON.parse(localStorage.getItem('info'));
   const email = info.email
@@ -18,4 +17,6 @@ const handlePerfil = async () => {
       alert(error);
     }
   };
-export default handlePerfil;
+
+
+export default handlePerfil

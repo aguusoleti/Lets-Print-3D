@@ -2,13 +2,14 @@ import { Button, Container, TextField, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import handlePerfil from "./perfilLogic";
 
-const Perfil = () => {
+const Ventas = () => {
   const [perfilData, setPerfilData] = useState(null);
 
   useEffect(() => {
     const fetchPerfilData = async () => {
       try {
         const data = await handlePerfil();
+        console.log(data + "soy data");
         setPerfilData(data);
       } catch (error) {
         console.error(error);
@@ -18,14 +19,16 @@ const Perfil = () => {
     fetchPerfilData();
   }, []);
 
+
+
   return (
-    <div>
-      <div style={{ marginTop: "0px", textAlign: "center" }}>
-        <Container>
+    <div>      
+       <div style={{ marginTop: "0px", textAlign: "center" }}>
+       <Container>
           {perfilData && (
             <div
               style={{
-                backgroundColor: "rgba(186, 178, 178, 1)",
+                backgroundColor: "blue",
                 textAlign: "start",
                 display: "inline-block",
                 margin: "32px",
@@ -37,7 +40,6 @@ const Perfil = () => {
               <Typography>Nombre</Typography>
               <TextField
                 variant="outlined"
-                id="name"
                 style={{ width: "400px" }}
                 value={perfilData.name}
                 onChange={(e) =>
@@ -48,7 +50,6 @@ const Perfil = () => {
               </TextField>
               <Typography>Apellido</Typography>
               <TextField
-                id="lastName"
                 variant="outlined"
                 style={{ width: "400px" }}
                 value={perfilData.lastName}
@@ -62,14 +63,12 @@ const Perfil = () => {
               <TextField
                 variant="outlined"
                 style={{ width: "400px" }}
-                id="email"
                 value={perfilData.email}
               >
                 {perfilData.email}
               </TextField>
               <Typography>Telefono</Typography>
               <TextField
-                id="celphone"
                 variant="outlined"
                 value={perfilData.celphone}
                 style={{ width: "400px" }}
@@ -81,14 +80,12 @@ const Perfil = () => {
               </TextField>
               <Typography>Direccion</Typography>
               <TextField
+                id="outlined-multiline-static"
                 multiline
-                id="adress"
                 rows={2}
                 style={{ width: "400px" }}
+                defaultValue="Default Value"
                 value={perfilData.adress}
-                onChange={(e) =>
-                  setPerfilData({ ...perfilData, adress: e.target.value })
-                }
               />
               <div
                 style={{
@@ -106,9 +103,9 @@ const Perfil = () => {
             </div>
           )}
         </Container>
-      </div>
+      </div> 
     </div>
   );
 };
 
-export default Perfil;
+export default Ventas;
