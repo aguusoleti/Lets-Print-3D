@@ -1,7 +1,7 @@
 # Lets Print 3D
 
 
-Este proyecto corresponde a un ejercicio práctico realizado por el grupo 21 de la Cohorte 9 en NoCountry. El objetivo del proyecto es crear una aplicación web para tomar turnos.
+Este proyecto es un e-comerce, una tienda virtual de bazar
 
 
 ## Tecnologías utilizadas
