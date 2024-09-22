@@ -7,6 +7,7 @@ import { Box, Modal, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 
 const CardsProducts = ({ product }) => {
+  console.log('hola soy product EN EL COMPONENTE CARD ' + product)
   const { addToCart } = useContext(AppContext);
 
   const handleCart = (item) => {
