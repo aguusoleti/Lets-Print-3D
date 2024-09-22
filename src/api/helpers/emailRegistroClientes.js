@@ -2,15 +2,30 @@
 //pidanme el archivo .env
 import nodemailer from "nodemailer";
 
-const emailRegistro = async (datos) =>{
+const emailRegistro = async (datos) => {
+    // const transport = nodemailer.createTransport({
+    //     host: process.env.EMAIL_HOST,
+    //     port: process.env.EMAIL_PORT,
+    //     auth: {
+    //     user: process.env.EMAIL_USER,
+    //     pass: process.env.EMAIL_PASS
+    //     }
+    // });  
+
+    const EMAIL_HOST = "smtp.gmail.com"
+    const EMAIL_PORT = 465
+    const EMAIL_USER = "agustinsoleti95@gmail.com"
+    const EMAIL_PASS = "uugs abts qtfs pbmz"
+
     const transport = nodemailer.createTransport({
-        host: process.env.EMAIL_HOST,
-        port: process.env.EMAIL_PORT,
+        host: EMAIL_HOST,
+        port: EMAIL_PORT,
         auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+            user: EMAIL_USER,
+            pass: EMAIL_PASS
         }
     });
+
     const {email, name,lastName, token} = datos;
     //enviar email
     const info = await transport.sendMail({
@@ -18,6 +33,7 @@ const emailRegistro = async (datos) =>{
         to: `${email}`,
         subject: "Valida tu cuenta en Lets Print 3D",
         text: "Valida tu cuenta en Lets Print 3D",
+
         html:`<p> Hola ${name} ${lastName}, valida tu cuenta en Lets Print 3D. </p>
         <p> Tu cuenta está lista, sólo debes validarla en el siguiente enlace:
         <a href="http://localhost:5000/api/client/confirm/${token}">Comprobar cuenta</a> </p>
