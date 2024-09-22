@@ -1,11 +1,5 @@
 import mongoose from "mongoose";
 
-
-
-
-
-
-
 const conectarDB = async () => {
   const URI_DB="mongodb+srv://letsprint:QpK4KXd6w4xP7cgN@lets-print.tdue4ze.mongodb.net/?retryWrites=true&w=majority&appName=Lets-Print"
   try {
