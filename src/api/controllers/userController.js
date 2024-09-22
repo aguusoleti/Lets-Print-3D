@@ -12,15 +12,15 @@ import emailRegistro from "../helpers/emailRegistroClientes.js";
 import emailNuevoPassword from "../helpers/emailPasswordOlvidadaClientes.js";
 
 const registrarUsuario = async (req, res) => {
-  const { email,celphone,name } = req.body;
+  const { email,name} = req.body;
   const existeUsuario = await User.findOne({ email });
 
-  if (
-    validarTelefonoAr.test(celphone) ||
-    validarTelefonoPe.test(celphone) ||
-    validarTelefonoCl.test(celphone) ||
-    validarTelefonoCo.test(celphone) ||
-    validarTelefonoVe.test(celphone)
+  if ( true
+    // validarTelefonoAr.test(celphone) ||
+    // validarTelefonoPe.test(celphone) ||
+    // validarTelefonoCl.test(celphone) ||
+    // validarTelefonoCo.test(celphone) ||
+    // validarTelefonoVe.test(celphone)
   ) {
    
     if (existeUsuario) {
@@ -31,6 +31,7 @@ const registrarUsuario = async (req, res) => {
     try {
       const usuario = new User(req.body);
       const usuarioGuardado = await usuario.save();
+      console.log(usuarioGuardado)
       //enviar email
       emailRegistro({
         email,
@@ -40,21 +41,49 @@ const registrarUsuario = async (req, res) => {
     } catch (error) {
       console.log(error);
     }
-  } else {
-    const error = new Error("Formato de telefono no valido");
-    return res.status(400).json({ msg: error.message });
   }
+  //  else {
+  //   const error = new Error("Formato de telefono no valido");
+  //   return res.status(400).json({ msg: error.message });
+  // }
 };
 
-const perfilUsuario = (req, res) => {
-  const { usuario } = req;
-  res.json({ perfil: usuario });
+const perfilUsuario = async (req, res) => {
+  const email = req.query.email
+  const usuarioConfirmar = await User.findOne({ email });
+  console.log(email)
+  console.log(usuarioConfirmar)
+  try {
+    if(usuarioConfirmar){
+      res.json(usuarioConfirmar)
+    }
+  } catch (error) {
+    res.json(error)
+  }
+  
+};
+const validate = async (req, res) => {
+  const { email } = req.body;
+  const existeUsuario = await User.findOne({ email });
+  if (!existeUsuario) {
+    const error = new Error("El usuario no existe");
+    return res.status(400).json({ msg: error.message });
+  }
+  try {
+    res.json({
+      validated: existeUsuario.confirmation,
+      token: existeUsuario.token
+    });
+  } catch (err) {
+    const error = new Error("Error al enviar las instrucciones");
+    res.status(400).json({ msg: error.message });
+  }
 };
 
 const confirmarUsuario = async (req, res) => {
   const { token } = req.params;
   const usuarioConfirmar = await User.findOne({ token });
-
+console.log(token)
   if (!usuarioConfirmar) {
     const error = new Error("Token no valido");
     return res.status(404).json({ msg: error.message });
@@ -64,8 +93,9 @@ const confirmarUsuario = async (req, res) => {
 
   try {
     usuarioConfirmar.token = null;
-    usuarioConfirmar.confirmado = true;
+    usuarioConfirmar.confirmation = true;
     await usuarioConfirmar.save();
+    console.log(usuarioConfirmar)
     res.json({ msg: "Usuario confirmado correctamente" });
   } catch (error) {
     console.log(error);
@@ -148,48 +178,41 @@ const nuevoPasswordUsuario = async (req, res) => {
 };
 const login = async (req, res) => {
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  if (user.type === "admin") {
-      if (await user.comprobarPassword(password)) {
+  const usuario = await User.findOne({ email });
+  console.log(usuario + "  Soy user")
+  if (usuario) {
+      if (await usuario.comprobarPasswordUsuario(password)) {
           return res.json({
-              token: generarJWT(user.id),
-              data: admin,
-          });
-      } else {
-          const error = new Error("El password es incorrecto");
-          return res.json({ msg: error.message });
-      }
-  }else if (user.type === "business") {
-      if (await negocio.comprobarPasswordNegocio(password)) {
-          return res.json({
-              token: generarJWT(user.id),
-              data: negocio,
-          });
-      } else {
-          const error = new Error("El password es incorrecto");
-          return res.json({ msg: error.message });
-      }
-  }else if (user.type === "client") {
-      if (await user.comprobarPasswordCliente(password)) {
-          return res.json({
-              token: generarJWT(user.id),
-              data: cliente,
+              token: generarJWT(usuario.id),
+              data: usuario,
           });
       } else {
           const error = new Error("El password es incorrecto");
           return res.json({ msg: error.message });
       }
   }
-  if (!user) {
+  if (!usuario) {
       const error = new Error("El Usuario no existe");
       return res.json({ msg: error.message });
   }
-  if (!user.confirmado) {
-      const error = new Error("La cuenta del cliente no ha sido validada");
+  console.log(usuario + "  Soy user")
+  if (!usuario.confirmation) {
+  console.log(usuario + "  Soy user")
+  const error = new Error("La cuenta del cliente no ha sido validada");
       return res.json({ msg: error.message });
   }
 
 };
+
+// const searchUser = async (req, res) => {
+//   const { id } = req.params;
+//   const user = await User.findOne({ id });
+
+//   if (user) {
+//     const error = new Error("Token no valido");
+//     return res.status(404).json({ msg: error.message });
+//   }
+// }
 export {
   registrarUsuario,
   confirmarUsuario,
@@ -199,4 +222,5 @@ export {
   nuevoPasswordUsuario,
   perfilUsuario,
   login,
+  validate,
 };

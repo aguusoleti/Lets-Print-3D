@@ -16,7 +16,7 @@ export default function Footer() {
   const classes = useStyles();
 
   return (
-    <footer style={{ position: 'fixed', bottom: 0, width: '100%',backgroundColor: 'rgba(186, 178, 178, 0.353)',size:"20px" }}>
+    <footer style={{ position: 'fixed', bottom: 0, width: '100%',backgroundColor: 'rgba(186, 178, 178, 1)',size:"20px" }}>
       <Container maxWidth="lg">
         <Box py={6} display="flex" flexWrap="wrap" alignItems="center">
           <Link href="#" color="inherit" underline="none"></Link>

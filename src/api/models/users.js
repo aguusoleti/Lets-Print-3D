@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
   },
   lastName: {
     type: String,
-    required: true,
+   
     trim: true,
   },
   password: {
@@ -25,12 +25,12 @@ const userSchema = mongoose.Schema({
   },
   adress: {
     type: String,
-    required: true,
+   
     trim: true,
   },
   celphone: {
     type: String,
-    required: true,
+  
     trim: true,
   },
   token: {

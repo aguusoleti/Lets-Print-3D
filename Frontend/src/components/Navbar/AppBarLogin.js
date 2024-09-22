@@ -8,12 +8,14 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import Login from "../../hooks/navbarLogin";
-import Salir from "../Login/Salir";
+import { useHistory } from 'react-router-dom';
+
+
 
 const pages = [
   "Ceramica",
@@ -24,30 +26,65 @@ const pages = [
   "Novedades",
   "Mas",
 ];
-const settings = ["Perfil", "Carrito", <Salir/>];
+const settings = ["Perfil", "Carrito", "Salir"];
 
-const token =
-  typeof window !== "undefined" ? window.localStorage.getItem("token") : null;
+function ResponsiveAppBarLogin() {
+  const data = JSON.parse(localStorage.getItem("info"));
 
-function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
   };
   const handleToggle = () => {
     setOpen(!open);
   };
+  const Salir = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("info");
+    window.location.href = "/";
 
+    // otras acciones necesarias para cerrar sesión, como redireccionar a la página de inicio de sesión
+  };
+  const Perfil = () => {
+    
+    window.location.href = "/perfil";
+
+    // otras acciones necesarias para cerrar sesión, como redireccionar a la página de inicio de sesión
+  };
+  // Dentro del componente
+  const userInfo = JSON.parse(localStorage.getItem("info"));
+  const handleMenuAction = (setting) => {
+// const history = useHistory();
+
+    if (setting === "Perfil") {
+      // Acción para abrir la página de perfil
+      Perfil()
+    } else if (setting === "Carrito") {
+      // Acción para abrir la página de configuración
+      history.push("/configuracion");
+    } else if (setting === "Salir") {
+      // Acción para cerrar sesión
+      Salir();
+    }
+  };
   return (
     <AppBar position="fixed" sx={{ backgroundColor: "rgba(186, 178, 178, 1)" }}>
       <Container maxWidth="xl">
@@ -63,8 +100,7 @@ function ResponsiveAppBar() {
             <img
               src="/logo.png"
               alt="logo"
-              style={{ width: "85px",display: "none", height: "auto"}}
-              
+              style={{ width: "85px", height: "auto" }}
             />
           </Button>
           <Backdrop
@@ -125,11 +161,7 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <img
-              src="/logo.png"
-              alt="logo"
-              style={{ width: "85px", height: "auto" ,display: { xs: "flex", md: "none" }, mr: 1}}
-            />
+          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -180,10 +212,52 @@ function ResponsiveAppBar() {
               <CircularProgress color="inherit" />
             </Backdrop>
           </Box>
-          <Login />
+
+          <Box
+            sx={{
+              flexGrow: 0,
+              display: { xs: "none", md: "flex" },
+              margin: "10px",
+              padding: "10px",
+            }}
+          >
+            <Typography>Hola {userInfo.name} Bienvenido</Typography>
+
+            <Tooltip title="">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <MenuIcon />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem
+                  key={setting}
+                  onClick={() => handleMenuAction(setting)}
+                >
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+
+export default ResponsiveAppBarLogin;

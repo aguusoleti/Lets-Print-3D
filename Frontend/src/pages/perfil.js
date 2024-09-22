@@ -1,16 +1,16 @@
 import * as React from "react";
 import Footer from "../components/Footer/Footer.js";
 import AppBar from "../components/Navbar/AppBar.js";
-import Home from "../containers/Home/Home.js";
-import ResponsiveAppBarLogin from "../components/Navbar/AppBarLogin.js";
+import Perfil from "../containers/Perfil/Perfil.js";
 
-const token = typeof window !== "undefined" ? window.localStorage.getItem("token") : null;
+
 
 function HomePage() {
   return (
-      <div>
+    <div>
       <AppBar />
-      <Home />
+      
+        <Perfil/>
       <Footer />
     </div>
   );

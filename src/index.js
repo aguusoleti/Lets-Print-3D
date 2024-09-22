@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 5000;
     res.send("¡Hola, mundo!");
   });
 
-  app.use("/api/login", clientRoutes);
+  // app.use("/api/login", clientRoutes);
   app.use("/api/client", clientRoutes);
   app.use("/api/product", productRoutes);
   app.use("/api/category", categoryRoutes);
