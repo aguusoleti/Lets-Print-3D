@@ -32,8 +32,8 @@ import {  FormControl,  Input,  InputAdornment,  InputLabel,  Link,  Modal,  Out
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
-const pages = ["Ceramica","Impresion3D","Sublimacion","Madera","Insumos","Novedades","Mas"];
-const settings = ["Perfil", "Carrito", "Salir"];
+// const pages = ["Ceramica","Impresion3D","Sublimacion","Madera","Insumos","Novedades","Mas"];
+// const settings = ["Perfil", "Carrito", "Salir"];
 const style = {
   position: "absolute",
   top: "50%",

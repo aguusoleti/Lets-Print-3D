@@ -8,6 +8,7 @@ const API2 = "http://localhost:5000/api/product/search?category=ceramica";
 
 const Ceramica = () => {
   const products2 = useGetProducts(API2);
+  console.log(products2);
   return (
     <section className="main-container">
       <div className="cards-container">

@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 
 
@@ -70,7 +70,7 @@ function ResponsiveAppBarLogin() {
     // otras acciones necesarias para cerrar sesión, como redireccionar a la página de inicio de sesión
   };
   // Dentro del componente
-  const userInfo = JSON.parse(localStorage.getItem("info"));
+  // const userInfo = JSON.parse(localStorage.getItem("info"));
   const handleMenuAction = (setting) => {
 // const history = useHistory();
 
@@ -221,7 +221,7 @@ function ResponsiveAppBarLogin() {
               padding: "10px",
             }}
           >
-            <Typography>Hola {userInfo.name} Bienvenido</Typography>
+            <Typography>Hola Bienvenido</Typography>
 
             <Tooltip title="">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
