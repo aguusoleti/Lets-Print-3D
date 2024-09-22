@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
 
 export default (async () => {
+  const URI_DB="mongodb+srv://letsprint:QpK4KXd6w4xP7cgN@lets-print.tdue4ze.mongodb.net/?retryWrites=true&w=majority&appName=Lets-Print"
   try {
-    const db = await mongoose.connect(process.env.MONGO_URI, {
+    // const db = await mongoose.connect(process.env.MONGO_URI, {
+      const db = await mongoose.connect(URI_DB, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

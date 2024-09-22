@@ -29,7 +29,7 @@ const registrarUsuario = async (req, res) => {
     }
 
     try {
-      const usuario = new Client(req.body);
+      const usuario = new User(req.body);
       const usuarioGuardado = await usuario.save();
       //enviar email
       emailRegistro({

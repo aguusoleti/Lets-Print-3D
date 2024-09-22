@@ -11,15 +11,8 @@ import Category from "../models/category.js";
       res.status(409).json({ message: error.message });
     }
   };
-  const postCategory =async (req,res)=>{
 
-  };
-  const getCategory =async (req,res)=>{
-    
-  };
 
   export {
-    createCategory,
-    postCategory,
-    getCategory
+    createCategory
   }
