@@ -4,7 +4,7 @@ import {
   Modal,
   Typography,
 } from "@mui/material";
-import { Box, Stack } from "@mui/system";
+import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
 const style = {
   position: "absolute",

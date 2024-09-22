@@ -9,7 +9,7 @@ function Login() {
     return (
     <div>
      <AppBar/> 
-     <Banner/>
+     {/* <Banner/> */}
      <Home/>
      <Footer/>
      <Validate/>

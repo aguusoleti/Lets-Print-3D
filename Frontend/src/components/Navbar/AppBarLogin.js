@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 
 
@@ -221,7 +221,7 @@ function ResponsiveAppBarLogin() {
               padding: "10px",
             }}
           >
-            <Typography>Hola {userInfo.name} Bienvenido</Typography>
+            <Typography>Hola  Bienvenido</Typography>
 
             <Tooltip title="">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
