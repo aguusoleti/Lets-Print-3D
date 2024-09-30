@@ -1,8 +1,21 @@
 import mongoose from "mongoose";
 
 const footerSchema = new mongoose.Schema({
-  name: { type: String, required: true},
-  type: { type: String, require: true, enum:["category","subcategory"] },
+  category: {
+    type: [String],  
+  },
+  menu: {
+    type: [String],  
+  },
+  background: {
+    type: String,
+  },
+  heigth: {
+    type: String,
+  },
+  width: {
+    type: String,
+  },
 });
 
 const Footer = mongoose.model("Footer", footerSchema);

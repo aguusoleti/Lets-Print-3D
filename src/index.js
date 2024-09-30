@@ -25,11 +25,13 @@ const PORT = process.env.PORT || 5000;
 
   // app.use("/api/login", clientRoutes);
   app.use("/api/client", clientRoutes);
+  app.use("/api/client", clientRoutes);
   app.use("/api/product", productRoutes);
   app.use("/api/category", categoryRoutes);
   app.use("/api/personalize", personalizeRoutes);
   app.use("/api/navbar", navbarRoutes);
   app.use("/api/footer", footerRoutes);
+ 
 
   app.listen(PORT, () => {
     console.log(`Servidor arrancado en el http://localhost:${PORT}`);

@@ -18,3 +18,5 @@ router.get("/password-olvidada/:token", comprobarTokenUsuario);
 router.post("/password-olvidada/:token",  nuevoPasswordUsuario);
 
 export default router;
+
+//POST GET PUT DELETED

@@ -27,6 +27,9 @@ const handleLogin = async () => {
     const info = await response.json();
     const token = info.token;
     const data = info.data;
+
+    console.log("soy info", info);
+
     console.log(data + " Soy data");
     if (response.ok) {
       localStorage.setItem("token", token);
