@@ -7,7 +7,6 @@ function HomePage() {
   return (
     <div>
       <AppBar />
-
       <Ceramica />
       <Footer />
     </div>

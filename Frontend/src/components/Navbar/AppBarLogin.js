@@ -16,6 +16,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 // import { useHistory } from 'react-router-dom';
 
 
+// import { useNavigate } from 'react-router-dom'; // Usa useNavigate si estás utilizando react-router-dom
 
 const pages = [
   "Ceramica",
@@ -29,7 +30,8 @@ const pages = [
 const settings = ["Perfil", "Carrito", "Salir"];
 
 function ResponsiveAppBarLogin() {
-  const data = JSON.parse(localStorage.getItem("info"));
+  const storedData = localStorage.getItem("info");
+ // const data = storedData ? JSON.parse(storedData) : null; // Asegúrate de que sea un valor válido
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -56,35 +58,32 @@ function ResponsiveAppBarLogin() {
   const handleToggle = () => {
     setOpen(!open);
   };
+
   const Salir = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("info");
     window.location.href = "/";
-
-    // otras acciones necesarias para cerrar sesión, como redireccionar a la página de inicio de sesión
   };
-  const Perfil = () => {
-    
-    window.location.href = "/perfil";
 
-    // otras acciones necesarias para cerrar sesión, como redireccionar a la página de inicio de sesión
+  const Perfil = () => {
+    window.location.href = "/perfil";
   };
   // Dentro del componente
-  // const userInfo = JSON.parse(localStorage.getItem("info"));
+  const userInfo = JSON.parse(localStorage.getItem("info"));
   const handleMenuAction = (setting) => {
 // const history = useHistory();
 
     if (setting === "Perfil") {
-      // Acción para abrir la página de perfil
-      Perfil()
+      Perfil();
     } else if (setting === "Carrito") {
-      // Acción para abrir la página de configuración
-      history.push("/configuracion");
+      window.location.href = "/carrito"; // Si no usas react-router, usa esto
+      // Si usas react-router-dom, descomenta la línea siguiente y usa navigate.
+      // navigate("/carrito");
     } else if (setting === "Salir") {
-      // Acción para cerrar sesión
       Salir();
     }
   };
+
   return (
     <AppBar position="fixed" sx={{ backgroundColor: "rgba(186, 178, 178, 1)" }}>
       <Container maxWidth="xl">
@@ -221,7 +220,7 @@ function ResponsiveAppBarLogin() {
               padding: "10px",
             }}
           >
-            <Typography>Hola Bienvenido</Typography>
+            <Typography>Hola {userInfo.name} Bienvenido</Typography>
 
             <Tooltip title="">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

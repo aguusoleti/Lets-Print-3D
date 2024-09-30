@@ -6,9 +6,9 @@ import * as React from 'react';
 //se usa 
 
 function Banner({ product }) {
-
+console.log(product);
   return (
-  <div>
+  <div >
 
       {product.imageUrls.map((url, index) => (
         <div key={index} >
