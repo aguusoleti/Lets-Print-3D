@@ -37,7 +37,7 @@ const registrarUsuario = async (req, res) => {
         email,
         name, 
         token: usuarioGuardado.token});
-      res.json(usuarioGuardado);
+        res.json(usuarioGuardado);
     } catch (error) {
       console.log(error);
     }

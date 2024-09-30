@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer";
-import { createPersonalize, uploadImage } from "../controllers/personalizeController.js";
+import {  getPersonalize, personalizeControllers, uploadImage } from "../controllers/personalizeController.js";
 
 // import checkAuth from '../middleware/authMiddleware.js';
 
@@ -17,8 +17,10 @@ const storage = multer.diskStorage({
   });
   const upload = multer({ dest:'uploads/',storage: storage });
 
-router.post("/", createPersonalize);
-router.put('/uploads/:id/images',upload.array('image'),uploadImage);
+
+  router.post("/", personalizeControllers);
+  router.get("/", getPersonalize);
+  router.put('/uploads/images',upload.array('image'),uploadImage);
 
 // router.get('/perfil', checkAuth, perfilCliente);
 export default router;

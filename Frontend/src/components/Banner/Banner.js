@@ -8,7 +8,7 @@ import * as React from 'react';
 function Banner({ product }) {
 console.log(product);
   return (
-  <div>
+  <div >
 
       {product.imageUrls.map((url, index) => (
         <div key={index} >
